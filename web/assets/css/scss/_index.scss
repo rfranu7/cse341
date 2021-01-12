@@ -6,6 +6,11 @@
     justify-content: center;
     align-items: center;
 
+    @include MQMin(768px) {
+        height: 30vh;
+        grid-template-columns: 1fr 27.5vh;
+    }
+
     img {
         float: right;
         display: none;
@@ -31,6 +36,7 @@
         }
     }
 
+    // IF SCREEN IS SMALL ADD BACKGROUND IMAGE
     @include MQ(767px) {
         background-image: url(../images/randeep-portrait.png);
         background-position: right;
@@ -39,9 +45,50 @@
         grid-template-columns: 1fr;
     }
 
+    @include MQO(300px, "landscape") {
+        height: 40vh;
+        grid-template-columns: 1fr 36.8vh;
+    }
+
 }
 
 .second-row {
     height: 70vh;
     background-color: #6b40ce;
+    text-align: center;
+    background-image: url(../images/coming-soon.png);
+    @include MQ(767px) {
+        height: 50vh;
+        background-image: url(../images/coming-soon-2.png);
+    }
+
+    @include MQO(767px, portrait) {
+        height: 50vh;
+        background-image: url(../images/coming-soon-2.png);
+    }
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    img {
+        max-height: 100%;
+    }
+}
+
+footer {
+    text-align: center;
+
+    span {
+        @include MQ(420px) {
+            font-size: .85rem;
+        }
+
+        @include MQ(360px) {
+            font-size: .75rem;
+        }
+
+        @include MQ(320px) {
+            font-size: .68rem;
+        }
+    }
 }

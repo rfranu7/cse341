@@ -9,6 +9,7 @@ nav {
     
     a {
         padding: 1rem;
+        text-decoration: none;
     }
 
     li {
@@ -17,7 +18,7 @@ nav {
         color: white
     }
 
-    li:hover {
+    a:hover {
         background-color: #542dae;
     }
 
