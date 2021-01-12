@@ -1,0 +1,76 @@
+.image {
+    display: none;
+    @include MQ(850px) {
+        background-color: #4ccde5;
+        display: block;
+        text-align: right;
+    }
+
+    @include MQO(850px, portrait) {
+        background-color: #4ccde5;
+        display: block;
+        text-align: right;
+    }
+
+    img {
+        position: relative;
+        top: 5px;
+        @include MQ(767px) {
+            width: 300px;
+        }
+        @include MQO(767px, portrait) {
+            width: 450px;
+        }
+        @include MQOMax(850px, landscape) {
+            width: 300px;
+        }
+    }
+}
+
+.profile {
+    background-color: #6b40ce;
+
+    .textHolder {
+        padding: 2rem;
+        color: white;
+        @include MQO(1024px, landscape) {
+            max-width: 300px;
+        }
+
+        @include MQO(1366px, landscape) {
+            max-width: 400px;
+        }
+
+        @include MQO(1367px, landscape) {
+            max-width: 1000px;
+        }
+    }
+
+    // IF SCREEN IS BIG ADD BACKGROUND IMAGE
+    @include MQO(850px, landscape) {
+        background-image: url(../images/randeep-portrait-alternate.png);
+        background-position: right;
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 100vh;
+    }
+
+}
+
+footer {
+    text-align: center;
+
+    span {
+        @include MQ(420px) {
+            font-size: .85rem;
+        }
+
+        @include MQ(360px) {
+            font-size: .75rem;
+        }
+
+        @include MQ(320px) {
+            font-size: .68rem;
+        }
+    }
+}

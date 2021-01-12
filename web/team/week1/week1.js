@@ -11,12 +11,12 @@
 
 //  JQUERY
 $("#colorChangeBtn").click((e) => {
-    e.preventDefault();
+    console.log(e);
     const color = $("#colorChange").val();
     $("#first-div").css("background-color", color);
 });
 
 $("#visibilityChangeBtn").click((e) => {
-    e.preventDefault();
+    console.log(e);
     $("#third-div").fadeToggle("slow");
 });

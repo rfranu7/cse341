@@ -5,20 +5,31 @@ nav {
         background-color: #6b40ce;
         display: flex;
         align-items: center;
+        @include MQ(767px){
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
     }
     
     a {
-        padding: 1rem;
         text-decoration: none;
+        color: white;
+        display: inline-block;
+        line-height: 2.8;
+        width: 100%;
+        text-align: center;
     }
 
     li {
         display: inline;
         list-style: none;
-        color: white
+        width: 100px;
+        @include MQ(767px){
+            width: 100%;
+        }
     }
 
-    a:hover {
+    li:hover {
         background-color: #542dae;
     }
 

@@ -36,6 +36,17 @@
         }
     }
 
+    .btn {
+        margin-top: .5rem;
+        background-color: #6b40ce;
+        color: White;
+        font-size: 1.2rem;
+
+        &:hover {
+            background-color: #542dae;
+        }
+    }
+
     // IF SCREEN IS SMALL ADD BACKGROUND IMAGE
     @include MQ(767px) {
         background-image: url(../images/randeep-portrait.png);
