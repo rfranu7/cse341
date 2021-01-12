@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <header><?php include($_SERVER['DOCUMENT_ROOT'].'/web/components/navbar.php'); ?></header>
+    <header><?php include($_SERVER['DOCUMENT_ROOT'].'/components/navbar.php'); ?></header>
 
     <main>
         <section class="first-row">
