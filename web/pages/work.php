@@ -17,7 +17,7 @@
 
     <main></main>
 
-    <footer><?php include($_SERVER['DOCUMENT_ROOT'].'/components/navbar.php'); ?></footer>
+    <footer><?php include($_SERVER['DOCUMENT_ROOT'].'/components/footer.php'); ?></footer>
 
 </body>
 </html>

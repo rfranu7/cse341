@@ -1,18 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_global\.scss}line{font-family:\000033}}
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
   background-color: #222125;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_global\.scss}line{font-family:\000039}}
 footer {
   background-color: #eee;
   padding: .75rem;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_global\.scss}line{font-family:\0000314}}
 .btn {
   display: inline-block;
   margin-bottom: 0;
@@ -35,12 +32,10 @@ footer {
   user-select: none;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_global\.scss}line{font-family:\0000336}}
 img {
   max-width: 100%;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_navigation\.scss}line{font-family:\000032}}
 nav ul {
   margin: 0;
   padding: 0;
@@ -49,13 +44,11 @@ nav ul {
   align-items: center;
 }
 @media only screen and (max-width: 767px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_navigation\.scss}line{font-family:\000032}}
   nav ul {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_navigation\.scss}line{font-family:\0000314}}
 nav a {
   text-decoration: none;
   color: white;
@@ -64,28 +57,23 @@ nav a {
   width: 100%;
   text-align: center;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_navigation\.scss}line{font-family:\0000323}}
 nav li {
   display: inline;
   list-style: none;
   width: 100px;
 }
 @media only screen and (max-width: 767px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_navigation\.scss}line{font-family:\0000323}}
   nav li {
     width: 100%;
   }
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_navigation\.scss}line{font-family:\0000332}}
 nav li:hover {
   background-color: #542dae;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_navigation\.scss}line{font-family:\0000336}}
 nav .active {
   background-color: #542dae;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\000031}}
 .first-row {
   height: 20vh;
   background-color: #4ccde5;
@@ -95,53 +83,44 @@ nav .active {
   align-items: center;
 }
 @media only screen and (min-width: 768px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\000031}}
   .first-row {
     height: 30vh;
     grid-template-columns: 1fr 27.5vh;
   }
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\0000314}}
 .first-row img {
   float: right;
   display: none;
 }
 @media only screen and (min-width: 768px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\0000314}}
   .first-row img {
     display: block;
   }
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\0000322}}
 .first-row .textHolder {
   text-align: center;
   color: white;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\0000326}}
 .first-row .textHolder h1 {
   font-size: 2rem;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\0000330}}
 .first-row .textHolder p {
   font-size: 1.3rem;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\0000334}}
 .first-row .textHolder h1, .first-row .textHolder p {
   margin: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\0000339}}
 .first-row .btn {
   margin-top: .5rem;
   background-color: #6b40ce;
   color: White;
   font-size: 1.2rem;
+  text-decoration: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\0000345}}
 .first-row .btn:hover {
   background-color: #542dae;
 }
 @media only screen and (max-width: 767px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\000031}}
   .first-row {
     background-image: url(../images/randeep-portrait.png);
     background-position: right;
@@ -151,14 +130,12 @@ nav .active {
   }
 }
 @media only screen and (min-width: 300px) and (orientation: landscape) {
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\000031}}
   .first-row {
     height: 40vh;
     grid-template-columns: 1fr 36.8vh;
   }
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\0000366}}
 .second-row {
   height: 70vh;
   background-color: #6b40ce;
@@ -169,53 +146,44 @@ nav .active {
   background-size: cover;
 }
 @media only screen and (max-width: 767px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\0000366}}
   .second-row {
     height: 50vh;
     background-image: url(../images/coming-soon-2.png);
   }
 }
 @media only screen and (min-width: 767px) and (orientation: portrait) {
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\0000366}}
   .second-row {
     height: 50vh;
     background-image: url(../images/coming-soon-2.png);
   }
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\0000384}}
 .second-row img {
   max-height: 100%;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\0000389}}
 footer {
   text-align: center;
 }
 @media only screen and (max-width: 420px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\0000392}}
   footer span {
     font-size: .85rem;
   }
 }
 @media only screen and (max-width: 360px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\0000392}}
   footer span {
     font-size: .75rem;
   }
 }
 @media only screen and (max-width: 320px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\0000392}}
   footer span {
     font-size: .68rem;
   }
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_profile\.scss}line{font-family:\000031}}
 .image {
   display: none;
 }
 @media only screen and (max-width: 850px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_profile\.scss}line{font-family:\000031}}
   .image {
     background-color: #4ccde5;
     display: block;
@@ -223,66 +191,55 @@ footer {
   }
 }
 @media only screen and (min-width: 850px) and (orientation: portrait) {
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_profile\.scss}line{font-family:\000031}}
   .image {
     background-color: #4ccde5;
     display: block;
     text-align: right;
   }
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_profile\.scss}line{font-family:\0000315}}
 .image img {
   position: relative;
   top: 5px;
 }
 @media only screen and (max-width: 767px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_profile\.scss}line{font-family:\0000315}}
   .image img {
     width: 300px;
   }
 }
 @media only screen and (min-width: 767px) and (orientation: portrait) {
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_profile\.scss}line{font-family:\0000315}}
   .image img {
     width: 450px;
   }
 }
 @media only screen and (max-width: 850px) and (orientation: landscape) {
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_profile\.scss}line{font-family:\0000315}}
   .image img {
     width: 300px;
   }
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_profile\.scss}line{font-family:\0000330}}
 .profile {
   background-color: #6b40ce;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_profile\.scss}line{font-family:\0000333}}
 .profile .textHolder {
   padding: 2rem;
   color: white;
 }
 @media only screen and (min-width: 1024px) and (orientation: landscape) {
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_profile\.scss}line{font-family:\0000333}}
   .profile .textHolder {
     max-width: 300px;
   }
 }
 @media only screen and (min-width: 1366px) and (orientation: landscape) {
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_profile\.scss}line{font-family:\0000333}}
   .profile .textHolder {
     max-width: 400px;
   }
 }
 @media only screen and (min-width: 1367px) and (orientation: landscape) {
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_profile\.scss}line{font-family:\0000333}}
   .profile .textHolder {
     max-width: 1000px;
   }
 }
 @media only screen and (min-width: 850px) and (orientation: landscape) {
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_profile\.scss}line{font-family:\0000330}}
   .profile {
     background-image: url(../images/randeep-portrait-alternate.png);
     background-position: right;
@@ -292,24 +249,20 @@ footer {
   }
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_profile\.scss}line{font-family:\0000360}}
 footer {
   text-align: center;
 }
 @media only screen and (max-width: 420px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_profile\.scss}line{font-family:\0000363}}
   footer span {
     font-size: .85rem;
   }
 }
 @media only screen and (max-width: 360px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_profile\.scss}line{font-family:\0000363}}
   footer span {
     font-size: .75rem;
   }
 }
 @media only screen and (max-width: 320px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_profile\.scss}line{font-family:\0000363}}
   footer span {
     font-size: .68rem;
   }

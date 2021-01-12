@@ -20,9 +20,9 @@
             <div class="textHolder">
                 <h1>HELLO!</h1>
                 <p>My name is Randeep Ranu</p>
-                <a href="./?action=profile"><button class="btn">Learn More</button></a>
+                <a href="./?action=profile" class="btn">Learn More</a>
             </div>
-            <img src="assets/images/randeep-portrait.png">
+            <img src="assets/images/randeep-portrait.png" alt="Randeep Ranu">
         </section>
 
         <section class="second-row">

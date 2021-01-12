@@ -17,7 +17,7 @@
 
     <main>
         <section class="image">
-            <img src="assets/images/randeep-portrait.png">
+            <img src="assets/images/randeep-portrait.png" alt="Randeep Ranu">
         </section>
 
         <section class="profile">
