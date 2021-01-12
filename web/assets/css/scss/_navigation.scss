@@ -1,0 +1,27 @@
+nav {
+    ul {
+        margin: 0;
+        padding: 0;
+        background-color: #6b40ce;
+        display: flex;
+        align-items: center;
+    }
+    
+    a {
+        padding: 1rem;
+    }
+
+    li {
+        display: inline;
+        list-style: none;
+        color: white
+    }
+
+    li:hover {
+        background-color: #542dae;
+    }
+
+    .active {
+        background-color: #542dae;
+    }
+}

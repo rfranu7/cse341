@@ -1,0 +1,47 @@
+.first-row {
+    height: 20vh;
+    background-color: #4ccde5;
+    display: grid;
+    grid-template-columns: 1fr 18.5vh;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        float: right;
+        display: none;
+        @include MQMin(768px) {
+            display: block;
+        }
+    }
+
+    .textHolder {
+        text-align: center;
+        color: white;
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        p {
+            font-size: 1.3rem;
+        }
+
+        h1, p {
+            margin: 0;
+        }
+    }
+
+    @include MQ(767px) {
+        background-image: url(../images/randeep-portrait.png);
+        background-position: right;
+        background-repeat: no-repeat;
+        background-size: contain;
+        grid-template-columns: 1fr;
+    }
+
+}
+
+.second-row {
+    height: 70vh;
+    background-color: #6b40ce;
+}

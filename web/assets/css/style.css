@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_global\.scss}line{font-family:\000033}}
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_global\.scss}line{font-family:\000038}}
+img {
+  max-width: 100%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_navigation\.scss}line{font-family:\000032}}
+nav ul {
+  margin: 0;
+  padding: 0;
+  background-color: #6b40ce;
+  display: flex;
+  align-items: center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_navigation\.scss}line{font-family:\0000310}}
+nav a {
+  padding: 1rem;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_navigation\.scss}line{font-family:\0000314}}
+nav li {
+  display: inline;
+  list-style: none;
+  color: white;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_navigation\.scss}line{font-family:\0000320}}
+nav li:hover {
+  background-color: #542dae;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_navigation\.scss}line{font-family:\0000324}}
+nav .active {
+  background-color: #542dae;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\000031}}
+.first-row {
+  height: 20vh;
+  background-color: #4ccde5;
+  display: grid;
+  grid-template-columns: 1fr 18.5vh;
+  justify-content: center;
+  align-items: center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\000039}}
+.first-row img {
+  float: right;
+  display: none;
+}
+@media only screen and (min-width: 768px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\000039}}
+  .first-row img {
+    display: block;
+  }
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\0000317}}
+.first-row .textHolder {
+  text-align: center;
+  color: white;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\0000321}}
+.first-row .textHolder h1 {
+  font-size: 2rem;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\0000325}}
+.first-row .textHolder p {
+  font-size: 1.3rem;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\0000329}}
+.first-row .textHolder h1, .first-row .textHolder p {
+  margin: 0;
+}
+@media only screen and (max-width: 767px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\000031}}
+  .first-row {
+    background-image: url(../images/randeep-portrait.png);
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: contain;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/F\:\/School\/CSE341\/cs313-php\/web\/assets\/css\/scss\/_index\.scss}line{font-family:\0000344}}
+.second-row {
+  height: 70vh;
+  background-color: #6b40ce;
+}
