@@ -28,7 +28,7 @@
 
                 <p>
                     I also work as a Software Developer for a tech startup company in the Philippines for about 4 months now. I get to work on different projects 
-                    (and programming languages depending on what the client needs) that helps me gain a lot of first hand experience in the development world.
+                    (and programming languages depending on what our client needs) that helps me gain a lot of first hand experience in the development world.
                 </p>
                 
                 <p>

@@ -22,14 +22,16 @@
                 <p>My name is Randeep Ranu</p>
                 <a href="./?action=profile" class="btn">Learn More</a>
             </div>
-            <img src="assets/images/randeep-portrait.png" alt="Randeep Ranu">
+            <img id="portrait-img" src="assets/images/randeep-portrait.png" data-src="alternate" alt="Randeep Ranu">
         </section>
 
         <section class="second-row">
-                <h1>My Work</h1>
+                <h1>MY WORK</h1>
         </section>
     </main>
 
     <footer><?php include($_SERVER['DOCUMENT_ROOT'].'/components/footer.php'); ?></footer>
+
+    <script src="assets/js/change-img.js"></script>
 </body>
 </html>

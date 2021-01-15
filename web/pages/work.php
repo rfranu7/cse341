@@ -17,7 +17,7 @@
 
     <main>
         <section class="work">
-                <h1>MY WORK</h1>
+            <h1>MY WORK</h1>
         </section>
     </main>
 
