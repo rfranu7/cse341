@@ -75,7 +75,7 @@ nav .active {
 }
 
 .first-row {
-  height: 20vh;
+  height: 30vh;
   background-color: #4ccde5;
   display: grid;
   grid-template-columns: 1fr 18.5vh;
@@ -84,7 +84,6 @@ nav .active {
 }
 @media only screen and (min-width: 768px) {
   .first-row {
-    height: 30vh;
     grid-template-columns: 1fr 27.5vh;
   }
 }
@@ -164,6 +163,11 @@ nav .active {
   margin: 0;
   color: white;
   padding: 1rem;
+}
+@media only screen and (max-width: 600px) and (orientation: landscape) {
+  .second-row h1 {
+    color: black;
+  }
 }
 
 footer {

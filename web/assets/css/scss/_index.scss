@@ -1,5 +1,5 @@
 .first-row {
-    height: 20vh;
+    height: 30vh;
     background-color: #4ccde5;
     display: grid;
     grid-template-columns: 1fr 18.5vh;
@@ -7,7 +7,6 @@
     align-items: center;
 
     @include MQMin(768px) {
-        height: 30vh;
         grid-template-columns: 1fr 27.5vh;
     }
 
@@ -89,6 +88,9 @@
     h1 {
         margin: 0;
         color: white;
+        @include MQOMax(600px, landscape) {
+            color: black;
+        }
         padding: 1rem;
     }
 }
