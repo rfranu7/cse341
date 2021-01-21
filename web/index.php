@@ -19,7 +19,7 @@
         break;
 
         case "shopping-cart":
-            include $_SERVER['DOCUMENT_ROOT'] . '/assignments/week3/browse.php';
+            header('Location: /assignments/week3/browse.php');
         break;
 
         default:        
