@@ -18,6 +18,10 @@
             include $_SERVER['DOCUMENT_ROOT'] . '/pages/work.php';
         break;
 
+        case "shopping-cart":
+            include $_SERVER['DOCUMENT_ROOT'] . '/assignments/week3/browse.php';
+        break;
+
         default:        
             include $_SERVER['DOCUMENT_ROOT'] . '/pages/home.php';
         break;
