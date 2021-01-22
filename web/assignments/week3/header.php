@@ -1,11 +1,11 @@
 <nav>
-    <a class="imageHolder" href="browse.php">
+    <a class="imageHolder" href=".">
         <img src="assets/img/b-logo.png" alt="STORE NAME">
     </a>
     <!-- <button>Search</button> -->
-    <a class="cart" href="cart.php">
+    <a class="cart" href="./?action=cart">
         <span class="material-icons shopping-cart">shopping_cart</span>
-        <span class="cart-num"><?php if(isset($cartCount) && $cartCount > 0) { echo $cartCount;} ?></span>
+        <?php if(isset($cartCount) && $cartCount > 0) { echo '<span class="cart-num">'.$cartCount.'</span>';} ?>
     </a>
 </nav>
 <img src="assets/img/banner.jpg" alt="STORE BANNER">

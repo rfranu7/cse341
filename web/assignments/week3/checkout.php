@@ -1,5 +1,4 @@
 <?php
-include "countries.php";
 
 if(!isset($_SESSION)) { 
     session_start(); 
@@ -24,13 +23,15 @@ if(isset($_SESSION['cart'])) {
 </head>
 <body>
 
-    <header>
-        <?php include 'header.php'; ?>
-    </header>
+    <header><?php include 'header.php'; ?></header>
 
     <main class="col-2">
         <div class="checkout">
-            <form action="checkout-items.php" method="post">
+            <?php if(isset($_SESSION['message'])) {
+                echo "<p class='error'>".$_SESSION['message']."</p>";
+                unset($_SESSION['message']);
+            } ?>
+            <form action="./?action=confirm" method="post">
 
                 <label for="firstName"><span class="req">*</span> First Name</label>
                 <input type="text" name="firstName" id="firstName" class="formInputs" required>
@@ -66,7 +67,7 @@ if(isset($_SESSION['cart'])) {
                 <label for="zipCode"><span class="req">*</span> Zip Code</label>
                 <input type="text" name="zipCode" id="zipCode" class="formInputs"  required>
 
-                <a class="btn" href="cart.php">Return to Cart</a>
+                <a class="btn" href="./?action=return-cart">Return to Cart</a>
                 <input type="submit" class="btn" value="Buy Now">
 
             </form>
@@ -75,13 +76,26 @@ if(isset($_SESSION['cart'])) {
         <div class="total">
             <div class="summary">   
                 <h4>Order Summary</h4>
-                <p>Subtotal <span></span></p>
+                <p>Subtotal <span> <?php if(isset($_SESSION['checkout']['orderName'])) { echo $_SESSION['checkout']['total']; } ?></span></p>
+                <p>Tax <span> <?php if(isset($_SESSION['checkout']['orderName'])) { echo ($_SESSION['checkout']['total']*.20); } ?></span></p>
+                <p><strong>Total <span> <?php if(isset($_SESSION['checkout']['orderName'])) { echo ($_SESSION['checkout']['total']*1.20); } ?></span></strong></p>
                 <p>Order Summary</p>
+                <div id="orderSum">
+                    <?php 
+                    if(isset($_SESSION['checkout']['orderName'])) {
+                        echo '<ul>';
+                        for($i=0; $i<count($_SESSION['checkout']['orderName']); $i++) {
+                            echo '<li>'.$_SESSION['checkout']['orderQuantity'][$i].' '.$_SESSION['checkout']['orderName'][$i];
+                        }
+                        echo '</ul>';
+                    }
+                    ?>
+                </div>
             </div>
         </div>
     </main>
     
-    <footer></footer>
+    <footer><?php include 'footer.php'; ?></footer>
     
 </body>
 </html>

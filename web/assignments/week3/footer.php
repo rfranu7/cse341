@@ -1,0 +1,1 @@
+<span>&#169; <?php echo date("Y"); ?> | Randeep Singh Ranu | Philippines | <a href="pages/attributions.php">Attributions</a></span>

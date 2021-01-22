@@ -31,46 +31,62 @@ $shoes = array(
 </head>
 <body>
 
-    <header>
-        <?php include 'header.php'; ?>
-    </header>
+    <header><?php include 'header.php'; ?></header>
 
-    <main class="col-2">
+    <main>
         <div class="welcome">
             <h1>THANK YOU FOR YOUR ORDER</h1>
-            <p>SOME MESSAAGE HERE</p>
+            <p>We are currently processing your order and will email you with the confirmation shortly.</p>
         </div>
 
         <div class="confirm">
-            <h2>Order number</h2>
-            <h2>Order date</h2>
-            <h2>Delivery Details</h2>
-            <h2>Order Summary</h2>
+            <h3>Order number: <?php echo mt_rand(100000, 999999); ?></h3>
+            <div class="delDetails">
+                <h3>Delivery Details</h3>
+                <p><strong>Delivery for</strong></p>
+                <p><?php echo $firstName.' '.$lastName; ?></p>
+                <p>Phone number: <?php echo $mobileNumber; ?></p>
+                
+                <p><strong>Address</strong></p>
+                <p><?php echo $streetAddress.', '.$city.', '.$province.', '.$countryCode.' '.$zipCode; ?></p>
+                
+                <p><strong>Delivery Method</strong></p>
+                <p>Standard Shipping - item will be delivered on or before <?php echo date('F d, Y', strtotime('+3 days')); ?>.</p>
+            </div>
+            <h3>Order Summary</h3>
             <?php 
             $total = 0;
-            if(isset($_SESSION['cart'])){
-                foreach($_SESSION['cart'] as $item) {
-                    $total += $item['itemPrice'];
-
-                    echo '<div class="itemDetailPlaceHolder">
-                            <input type="checkbox" name="delete[]">
-                            <img src="assets/img/'.$item['itemImg'].'" alt="'.$item['itemName'].'" title="'.$item['itemName'].'">
-                            <h3>'.$item['itemName'].'</h3>
-                            <h3>'.$item['itemPrice'].'</h3>
-                            <h3>'.$item['itemQuantity'].'</h3>
+            if(isset($_SESSION['checkout'])){
+                for($i=0; $i<count($_SESSION['checkout']['orderName']); $i++) {
+                    echo '<div class="itemDetailPlaceHolderConfirm">
+                            <img src="assets/img/'.$checkoutItemImg[$i].'" alt="'.$_SESSION['checkout']['orderName'][$i].'" title="'.$_SESSION['checkout']['orderName'][$i].'">
+                            <h3>'.$_SESSION['checkout']['orderName'][$i].'</h3>
+                            <h3>'.$checkoutItemPrice[$i].'</h3>
+                            <h3>'.$_SESSION['checkout']['orderQuantity'][$i].'</h3>
                           </div>';
                 }
             }
-            ?>         
-        </div>
-
-        <div class="total">
-            <p>Subtotal <span></span></p>
-            <p>Order Summary</p>
+            ?>
+            <div class="amountSummary">
+                <div class="amountItems">
+                    <p>Subtotal</p>
+                    <p> <?php if(isset($_SESSION['checkout']['orderName'])) { echo $_SESSION['checkout']['total']; } ?></p>
+                </div>
+                <div class="amountItems">
+                    <h3 class="totalAmount">Tax</h3>
+                    <h3> <?php if(isset($_SESSION['checkout']['orderName'])) { echo ($_SESSION['checkout']['total']*.20); } ?></h3>
+                </div>
+                <div class="amountItems">
+                    <h3 class="totalAmount">Total</h3>
+                    <h3> <?php if(isset($_SESSION['checkout']['orderName'])) { echo ($_SESSION['checkout']['total']*1.20); } ?></h3>
+                </div>
+            </div>         
         </div>
     </main>
+
+    <?php //unset($_SESSION['checkout']); ?>
     
-    <footer></footer>
+    <footer><?php include 'footer.php'; ?></footer>
     
 </body>
 </html>

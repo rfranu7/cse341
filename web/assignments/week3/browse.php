@@ -31,16 +31,9 @@ $shoes = array(
 </head>
 <body>
 
-    <header>
-        <?php include 'header.php'; ?>
-    </header>
+    <header><?php include 'header.php'; ?></header>
 
     <main>
-        <div class="welcome">
-            <h1>WELCOME</h1>
-            <p>SOME MESSAAGE HERE</p>
-        </div>
-
         <div class="browse">
 
             <?php 
@@ -52,7 +45,7 @@ $shoes = array(
                         <div class="itemDetails">
                             <h3>'.$key.'</h3>
                             <button class="btn">Buy Now</button>
-                            <form class="addToCartForm" action="add-to-cart.php" method="post">
+                            <form class="addToCartForm" action="?action=add-to-cart" method="post">
                                 <input type="hidden" name="itemName" value="'.$key.'">
                                 <button class="btn">Add to Cart</button>
                             </form>
@@ -64,7 +57,7 @@ $shoes = array(
         </div>
     </main>
     
-    <footer></footer>
+    <footer><?php include 'footer.php'; ?></footer>
     
 </body>
 </html>
