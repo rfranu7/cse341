@@ -43,6 +43,11 @@
     div {
         order: 4;
     }
+
+    .checkItems {
+        width: 20px;
+        height: 20px;
+    }
 }
 
 .all-col {
@@ -82,7 +87,7 @@
 @include MQMin(1024px) {
     .itemDetailPlaceHolder {
         display: grid;
-        grid-template-columns: 20px 150px 1fr .5fr 1fr;
+        grid-template-columns: 40px 150px 1fr .5fr 1fr;
         margin-bottom: .5rem;
         align-items: center;
         justify-content: center;

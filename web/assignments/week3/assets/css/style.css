@@ -309,6 +309,10 @@ header nav {
 .itemDetailPlaceHolder div {
   order: 4;
 }
+.itemDetailPlaceHolder .checkItems {
+  width: 20px;
+  height: 20px;
+}
 
 .all-col {
   grid-column: 1/span 5;
@@ -347,7 +351,7 @@ header nav {
 @media only screen and (min-width: 1024px) {
   .itemDetailPlaceHolder {
     display: grid;
-    grid-template-columns: 20px 150px 1fr .5fr 1fr;
+    grid-template-columns: 40px 150px 1fr .5fr 1fr;
     margin-bottom: .5rem;
     align-items: center;
     justify-content: center;
