@@ -26,7 +26,8 @@
         </section>
 
         <section class="second-row">
-                <h1>MY WORK</h1>
+            <h1>MY WORK</h1>
+            <?php include($_SERVER['DOCUMENT_ROOT'].'/components/assignments.php'); ?>
         </section>
     </main>
 

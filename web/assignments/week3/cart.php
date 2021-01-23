@@ -80,7 +80,7 @@ if(isset($_SESSION['cart'])) {
     <footer><?php include 'footer.php'; ?></footer>
 
     <!-- The Modal -->
-    <div id="myModal" class="modal">
+    <div id="removeModal" class="modal">
 
         <!-- Modal content -->
         <div class="modal-content">

@@ -1,5 +1,5 @@
 // GET MODAL ITEMS
-const modal = document.getElementById("myModal");
+const modal = document.getElementById("removeModal");
 const span = document.getElementsByClassName("close")[0];
 const cancelBtn = document.getElementById("cancel-btn");
 

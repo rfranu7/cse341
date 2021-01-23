@@ -1,20 +1,6 @@
 .work {
-    height: 70vh;
-    background-color: #6b40ce;
+    background-color: #fff;
     text-align: center;
-    background-image: url(../images/coming-soon-alt.png);
-    @include MQ(767px) {
-        height: 50vh;
-        background-image: url(../images/coming-soon-alt-2.png);
-    }
-
-    @include MQO(767px, portrait) {
-        height: 50vh;
-        background-image: url(../images/coming-soon-alt-2.png);
-    }
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 
     img {
         max-height: 100%;
@@ -23,6 +9,7 @@
     h1 {
         margin: 0;
         color: white;
+        background-color: #4ccde5;
         padding: 1rem;
     }
 }

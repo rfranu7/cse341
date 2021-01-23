@@ -1,0 +1,19 @@
+.assignmentList {
+    display: grid; 
+    grid-template-columns: repeat(6, 1fr);
+    margin-bottom: 0;
+
+    li {
+        list-style:none;
+    }
+
+    a {
+        color: #6b40ce; 
+        text-decoration: none;
+    }
+
+    .imageHolder {
+        text-align: center;
+        background-color: #6b40ce;
+    }
+}

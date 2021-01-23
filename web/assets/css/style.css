@@ -2,7 +2,7 @@
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
-  background-color: #222125;
+  background-color: #eee;
 }
 
 footer {
@@ -136,25 +136,8 @@ nav .active {
 }
 
 .second-row {
-  height: 70vh;
-  background-color: #6b40ce;
+  background-color: #fff;
   text-align: center;
-  background-image: url(../images/coming-soon.png);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-@media only screen and (max-width: 767px) {
-  .second-row {
-    height: 50vh;
-    background-image: url(../images/coming-soon-2.png);
-  }
-}
-@media only screen and (min-width: 767px) and (orientation: portrait) {
-  .second-row {
-    height: 50vh;
-    background-image: url(../images/coming-soon-2.png);
-  }
 }
 .second-row img {
   max-height: 100%;
@@ -162,6 +145,7 @@ nav .active {
 .second-row h1 {
   margin: 0;
   color: white;
+  background-color: #6b40ce;
   padding: 1rem;
 }
 @media only screen and (max-width: 600px) and (orientation: landscape) {
@@ -278,25 +262,8 @@ footer {
 }
 
 .work {
-  height: 70vh;
-  background-color: #6b40ce;
+  background-color: #fff;
   text-align: center;
-  background-image: url(../images/coming-soon-alt.png);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-@media only screen and (max-width: 767px) {
-  .work {
-    height: 50vh;
-    background-image: url(../images/coming-soon-alt-2.png);
-  }
-}
-@media only screen and (min-width: 767px) and (orientation: portrait) {
-  .work {
-    height: 50vh;
-    background-image: url(../images/coming-soon-alt-2.png);
-  }
 }
 .work img {
   max-height: 100%;
@@ -304,6 +271,7 @@ footer {
 .work h1 {
   margin: 0;
   color: white;
+  background-color: #4ccde5;
   padding: 1rem;
 }
 
@@ -324,4 +292,21 @@ footer {
   footer span {
     font-size: .68rem;
   }
+}
+
+.assignmentList {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  margin-bottom: 0;
+}
+.assignmentList li {
+  list-style: none;
+}
+.assignmentList a {
+  color: #6b40ce;
+  text-decoration: none;
+}
+.assignmentList .imageHolder {
+  text-align: center;
+  background-color: #6b40ce;
 }

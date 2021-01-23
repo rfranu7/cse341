@@ -18,6 +18,7 @@
     <main>
         <section class="work">
             <h1>MY WORK</h1>
+            <?php include($_SERVER['DOCUMENT_ROOT'].'/components/assignments.php'); ?>
         </section>
     </main>
 

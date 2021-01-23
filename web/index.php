@@ -19,7 +19,7 @@
         break;
 
         case "shopping-cart":
-            header('Location: /assignments/week3/browse.php');
+            header('Location: /assignments/week3/');
         break;
 
         default:        
