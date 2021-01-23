@@ -85,7 +85,6 @@
         break;
 
         case "remove-item":
-            print_r($_SESSION['cart']);
             $itemName = filter_input(INPUT_POST, 'itemName', FILTER_SANITIZE_STRING);
             $itemQuantity = filter_input(INPUT_POST, 'itemQuantity', FILTER_SANITIZE_NUMBER_INT);
             $itemPrice = filter_input(INPUT_POST, 'itemPrice', FILTER_SANITIZE_NUMBER_INT);
@@ -94,15 +93,11 @@
                 $itemCode = $shoesCode[$itemName];
             }
 
-            echo '<br><br>'.$itemCode;
             unset($_SESSION['cart'][$itemCode]);
 
             if(count($_SESSION['cart'])==0) {
                 unset($_SESSION['cart']);
             }
-
-            echo '<br><br>';
-            print_r($_SESSION['cart']);
 
             $_SESSION['message'] = $itemName." has been successfully removed from your cart";
             $_SESSION['msgStatus'] = "success";
@@ -187,11 +182,19 @@
                     $checkoutItemImg[] = $itemImg;
                 }
 
+                // REMOVE FROM CART IF ITEM EXISTS
+                if(array_key_exists($_SESSION['checkout']['orderName'][$i], $shoesCode)) {
+                    $itemCode = $shoesCode[$_SESSION['checkout']['orderName'][$i]];
+                    unset($_SESSION['cart'][$itemCode]);
+                }
+
                 $itemPrice = $_SESSION['checkout']['orderQuantity'][$i]*1000;
                 $checkoutItemPrice[] = $itemPrice;
             }
 
-            unset($_SESSION['cart']);
+            if(count($_SESSION['cart'])==0) {
+                unset($_SESSION['cart']);
+            }
 
             include $_SERVER['DOCUMENT_ROOT'] . '/assignments/week3/confirm.php';
         break;
