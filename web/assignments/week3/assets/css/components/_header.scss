@@ -1,0 +1,41 @@
+/* START Header Styling */
+
+header nav {
+    display: grid;
+    grid-template-columns: 1fr 80px;
+    grid-column-gap: .5rem;
+    align-items: center;
+    padding: .25rem .5rem;
+    border-bottom: 1px solid #333;
+    box-shadow: #333;
+}
+
+.cart-header {
+    position: relative;
+    text-decoration: none;
+    text-align: right;
+}
+
+.shopping-cart {
+    color: #000;
+}
+
+.cart-num {
+    position: relative;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: .05rem .25rem;
+    top: -17px;
+    left: -13px;
+}
+
+.imageHolder {
+    height: 100%;
+    max-height: 40px;
+    img {
+        max-height: 95%;
+    }
+}
+
+/* END Header Styling */

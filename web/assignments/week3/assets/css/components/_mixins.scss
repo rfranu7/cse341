@@ -1,0 +1,15 @@
+@mixin MQ($size) {
+    @media only screen and (max-width: $size) { @content }
+};
+
+@mixin MQOMax($size, $orientation) {
+    @media only screen and (max-width: $size) and (orientation: $orientation) { @content }
+};
+
+@mixin MQO($size, $orientation) {
+    @media only screen and (min-width: $size) and (orientation: $orientation) { @content }
+};
+
+@mixin MQMin($size) {
+    @media only screen and (min-width: $size) { @content }
+};

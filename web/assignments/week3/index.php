@@ -63,8 +63,50 @@
             header('Location: .');
         break;
 
+        case "buy-now":
+            // FILTER DATA FROM CART
+            $itemName = filter_input(INPUT_POST, 'itemName', FILTER_SANITIZE_STRING);
+            $itemQuantity = 1;
+            $itemPrice = 1000;
+            
+            $total = $itemPrice;
+            $orderName = array($itemName);
+            $orderQuantity = array($itemQuantity);
+
+            // SET PROCESSED VARIABLES TO SESSION
+            $_SESSION['checkout'] = array("total" => $total, "orderName" => $orderName, "orderQuantity" => $orderQuantity);
+
+            // SEND TO CHECKOUT PAGE
+            header('Location: ./?action=checkout');
+        break;
+
         case "cart":
             include $_SERVER['DOCUMENT_ROOT'] . '/assignments/week3/cart.php';
+        break;
+
+        case "remove-item":
+            print_r($_SESSION['cart']);
+            $itemName = filter_input(INPUT_POST, 'itemName', FILTER_SANITIZE_STRING);
+            $itemQuantity = filter_input(INPUT_POST, 'itemQuantity', FILTER_SANITIZE_NUMBER_INT);
+            $itemPrice = filter_input(INPUT_POST, 'itemPrice', FILTER_SANITIZE_NUMBER_INT);
+
+            if(array_key_exists($itemName, $shoesCode)) {
+                $itemCode = $shoesCode[$itemName];
+            }
+
+            echo '<br><br>'.$itemCode;
+            unset($_SESSION['cart'][$itemCode]);
+
+            if(count($_SESSION['cart'])==0) {
+                unset($_SESSION['cart']);
+            }
+
+            echo '<br><br>';
+            print_r($_SESSION['cart']);
+
+            $_SESSION['message'] = $itemName." has been successfully removed from your cart";
+            $_SESSION['msgStatus'] = "success";
+            header('Location: ./?action=cart');
         break;
 
         case "proceed-to-checkout":
@@ -76,6 +118,7 @@
             // CHECK IF EMPTY
             if(empty($total) || empty($orderName) || empty($orderQuantity)) {
                 $_SESSION['message'] = "Please select items from your cart before checking out";
+                $_SESSION['msgStatus'] = "error";
                 header('Location: ./?action=cart');
                 exit;
             }
@@ -91,6 +134,7 @@
             // REDIRECT TO CART IF ITEMS ARE EMPTY
             if(!isset($_SESSION['checkout'])){
                 $_SESSION['message'] = "Please select items from your cart before checking out";
+                $_SESSION['msgStatus'] = "error";
                 header('Location: ./?action=cart');
                 exit;
             }
@@ -104,11 +148,12 @@
 
         case "confirm":
             // REDIRECT TO CART IF ITEMS ARE EMPTY
-            // if(!isset($_SESSION['checkout'])){
-            //     $_SESSION['message'] = "Please select items from your cart before checking out";
-            //     header('Location: ./?action=cart');
-            //     exit;
-            // }
+            if(!isset($_SESSION['checkout'])){
+                $_SESSION['message'] = "Please select items from your cart before checking out";
+                $_SESSION['msgStatus'] = "error";
+                header('Location: ./?action=cart');
+                exit;
+            }
 
             // FILTER FORM INPUTS
             $firstName = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_STRING);
@@ -127,6 +172,7 @@
             if(empty($firstName) || empty($lastName) || empty($emailAddress) || empty($mobileNumber) || 
             empty($streetAddress) || empty($city) || empty($province) || empty($country) || empty($zipCode)) {
                 $_SESSION['message'] = "Please fill out all required fields.";
+                $_SESSION['msgStatus'] = "error";
                 header('Location: ./?action=checkout');
                 exit;
             }

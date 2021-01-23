@@ -59,7 +59,9 @@ $shoes = array(
             if(isset($_SESSION['checkout'])){
                 for($i=0; $i<count($_SESSION['checkout']['orderName']); $i++) {
                     echo '<div class="itemDetailPlaceHolderConfirm">
-                            <img src="assets/img/'.$checkoutItemImg[$i].'" alt="'.$_SESSION['checkout']['orderName'][$i].'" title="'.$_SESSION['checkout']['orderName'][$i].'">
+                            <div class="imgHolder">
+                                <img src="assets/img/'.$checkoutItemImg[$i].'" alt="'.$_SESSION['checkout']['orderName'][$i].'" title="'.$_SESSION['checkout']['orderName'][$i].'">
+                            </div>
                             <h3>'.$_SESSION['checkout']['orderName'][$i].'</h3>
                             <h3>'.$checkoutItemPrice[$i].'</h3>
                             <h3>'.$_SESSION['checkout']['orderQuantity'][$i].'</h3>
@@ -84,7 +86,7 @@ $shoes = array(
         </div>
     </main>
 
-    <?php //unset($_SESSION['checkout']); ?>
+    <?php unset($_SESSION['checkout']); ?>
     
     <footer><?php include 'footer.php'; ?></footer>
     

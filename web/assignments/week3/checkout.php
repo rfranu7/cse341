@@ -28,8 +28,9 @@ if(isset($_SESSION['cart'])) {
     <main class="col-2">
         <div class="checkout">
             <?php if(isset($_SESSION['message'])) {
-                echo "<p class='error'>".$_SESSION['message']."</p>";
+                echo "<p class='".$_SESSION['msgStatus']."'>".$_SESSION['message']."</p>";
                 unset($_SESSION['message']);
+                unset($_SESSION['msgStatus']);
             } ?>
             <form action="./?action=confirm" method="post">
 
@@ -67,8 +68,8 @@ if(isset($_SESSION['cart'])) {
                 <label for="zipCode"><span class="req">*</span> Zip Code</label>
                 <input type="text" name="zipCode" id="zipCode" class="formInputs"  required>
 
-                <a class="btn" href="./?action=return-cart">Return to Cart</a>
-                <input type="submit" class="btn" value="Buy Now">
+                <a class="btn btn-primary" href="./?action=return-cart">Return to Cart</a>
+                <input type="submit" class="btn btn-action" value="Buy Now">
 
             </form>
         </div>

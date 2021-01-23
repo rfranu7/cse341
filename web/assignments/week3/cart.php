@@ -28,8 +28,9 @@ if(isset($_SESSION['cart'])) {
         <div class="cart">
             <?php 
             if(isset($_SESSION['message'])) {
-                echo "<p class='error'>".$_SESSION['message']."</p>";
+                echo "<p class='".$_SESSION['msgStatus']."'>".$_SESSION['message']."</p>";
                 unset($_SESSION['message']);
+                unset($_SESSION['msgStatus']);
             }
 
 
@@ -39,20 +40,24 @@ if(isset($_SESSION['cart'])) {
                     $total += $item['itemPrice'];
 
                     echo '<div class="itemDetailPlaceHolder">
-                            <input type="checkbox" name="delete[]" class="checkItems" data-name="'.$item['itemName'].'" data-price="'.$item['itemPrice'].'" data-quantity="'.$item['itemQuantity'].'">
-                            <img src="assets/img/'.$item['itemImg'].'" alt="'.$item['itemName'].'" title="'.$item['itemName'].'">
+                            <form>
+                                <input type="checkbox" name="delete[]" class="checkItems" data-name="'.$item['itemName'].'" data-price="'.$item['itemPrice'].'" data-quantity="'.$item['itemQuantity'].'">
+                            </form>
+                            <div class="itemImgHolder">
+                                <img src="assets/img/'.$item['itemImg'].'" alt="'.$item['itemName'].'" title="'.$item['itemName'].'">
+                            </div>
                             <h3>'.$item['itemName'].'</h3>
-                            <h3>'.$item['itemPrice'].'</h3>
+                            <h3 class="itemPrice">'.$item['itemPrice'].'</h3>
                             <div class="quantityEdit">
-                                <button class="btn">-</button>
-                                <input type="number" name="quantity" value="'.$item['itemQuantity'].'">
-                                <button class="btn">+</button>
+                                <button class="btn btn-primary minus-btn">-</button>
+                                <input type="number" class="quantityInput" name="quantity" value="'.$item['itemQuantity'].'">
+                                <button class="btn btn-primary add-btn">+</button>
                             </div>
                           </div>';
                 }
             } else {
-                echo '<div class="itemDetailPlaceHolder"><p class="all-col">No items to view</p>'.
-                    '<a class="btn btnAnchor all-col" href="?action=browse">Browse Now</a></div>';
+                echo '<div class="itemDetailPlaceHolder no-view"><p class="all-col">No items to view</p>'.
+                    '<p class="btn-anchor all-col"><a class="btn btn-primary" href="?action=browse">Browse Now</a></p    ></div>';
             }
             ?>
             
@@ -66,7 +71,7 @@ if(isset($_SESSION['cart'])) {
                 <div id="orderSum"></div>
                 <form id="checkoutForm" action="?action=proceed-to-checkout" method="post">
                     <input type="hidden" name="total" id="totalForm">
-                    <input type="submit" class="btn" value="Checkout">
+                    <input id="checkoutBtn" type="submit" class="btn btn-action <?php if(!isset($_SESSION['cart'])) { echo "btn-disabled"; } ?>" value="Checkout" <?php if(!isset($_SESSION['cart'])) { echo "disabled"; } ?>>
                 </form>
             </div>
         </div>
@@ -74,93 +79,32 @@ if(isset($_SESSION['cart'])) {
     
     <footer><?php include 'footer.php'; ?></footer>
 
-    <script>
-    
-        const checkItems = document.querySelectorAll(".checkItems");
-        checkItems.forEach(element => {
-            element.addEventListener("change", (e) => {
-                const amount = document.getElementById("amount");
-                const totalAmount = document.getElementById("totalForm");
-                const orderSum = document.getElementById("orderSum");
-                const checkoutForm = document.getElementById("checkoutForm");
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
 
-                if(e.target.checked) {
-                    // ADD AMOUNT TO CART
-                    amount.textContent = amount.textContent == "" ? 0 + parseFloat(e.target.dataset.price) : parseFloat(amount.textContent) + parseFloat(e.target.dataset.price);
-                    totalAmount.value = totalAmount.value == "" ? 0 + parseFloat(e.target.dataset.price) : parseFloat(totalAmount.value) + parseFloat(e.target.dataset.price)
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to remove <span id="itemName"></span> from your cart? </p>
+            </div>
+            <div class="modal-footer">
+                <form id="removeItemForm" action="?action=remove-item" method="post">
+                    <input type="hidden" name="itemName" id="itemNameRemove">
+                    <input type="hidden" name="itemQuantity" id="itemQuantityRemove">
+                    <input type="hidden" name="itemPrice" id="itemPriceRemove">
+                    <button class="btn btn-error">Remove Item</button>
+                </form>
+                <button id="cancel-btn" class="btn btn-primary">Cancel</button>
+            </div>
+        </div>
 
-                    // ADD ITEM TO ORDER SUMMARY
-                    if(orderSum.innerHTML == "") {
-                        orderSum.innerHTML = "<ul id='orderSumList'><li data-name='"+e.target.dataset.name+"'>"+e.target.dataset.quantity+" "+e.target.dataset.name+"</li></ul>";
-                        
-                        const orderQuantity = document.createElement("input");
-                        orderQuantity.setAttribute("type", "hidden");
-                        orderQuantity.setAttribute("name", "orderQuantity[]");
-                        orderQuantity.dataset.name = e.target.dataset.name;
-                        orderQuantity.setAttribute("value", e.target.dataset.quantity);
-                        
-                        const orderName = document.createElement("input");
-                        orderName.setAttribute("type", "hidden");
-                        orderName.setAttribute("name", "orderName[]");
-                        orderName.dataset.name = e.target.dataset.name;
-                        orderName.setAttribute("value", e.target.dataset.name);
+    </div>
 
-                        checkoutForm.appendChild(orderQuantity);
-                        checkoutForm.appendChild(orderName);
-                    } else {
-                        const orderList = document.getElementById("orderSumList");
-                        const li = document.createElement("li");
-                        li.dataset.name = e.target.dataset.name;
-                        li.textContent = e.target.dataset.quantity+" "+e.target.dataset.name;
-                        orderList.appendChild(li);
-
-                        const orderQuantity = document.createElement("input");
-                        orderQuantity.setAttribute("type", "hidden");
-                        orderQuantity.setAttribute("name", "orderQuantity[]");
-                        orderQuantity.dataset.name = e.target.dataset.name;
-                        orderQuantity.setAttribute("value", e.target.dataset.quantity);
-                        
-                        const orderName = document.createElement("input");
-                        orderName.setAttribute("type", "hidden");
-                        orderName.setAttribute("name", "orderName[]");
-                        orderName.dataset.name = e.target.dataset.name;
-                        orderName.setAttribute("value", e.target.dataset.name);
-
-                        checkoutForm.appendChild(orderQuantity);
-                        checkoutForm.appendChild(orderName);
-                    }
-
-                } else if(!e.target.checked) {
-                    // REMOVE AMOUNT TO CART
-                    amount.textContent = amount.textContent == "" ? 0 - parseFloat(e.target.dataset.price) : parseFloat(amount.textContent) - parseFloat(e.target.dataset.price);
-                    totalAmount.value = totalAmount.value == "" ? 0 - parseFloat(e.target.dataset.price) : parseFloat(totalAmount.value) - parseFloat(e.target.dataset.price)
-
-                    // REMOVE ITEM TO ORDER SUMMARY
-                    if(!orderSum.innerHTML == "") {
-                        const orderList = document.getElementById("orderSumList");
-                        const childs = orderList.childNodes;
-
-                        const checkoutForm = document.getElementById("checkoutForm");
-                        const InputName = document.querySelectorAll("input[name='orderName[]']");
-                        const InputQuantity = document.querySelectorAll("input[name='orderQuantity[]']");
-                        console.log(InputName);
-
-                        for(var i=0; i<childs.length; i++) {
-                            if(childs[i].dataset.name == e.target.dataset.name) {
-                                orderList.removeChild(childs[i]);
-                                checkoutForm.removeChild(InputName[i]);
-                                checkoutForm.removeChild(InputQuantity[i]);
-                            } else {
-                                continue;
-                            }
-                        }
-                    }
-
-                }
-            });
-        });
-
-    </script>
+    <script src="assets/js/modal.js"></script>
+    <script src="assets/js/cart.js"></script>
     
 </body>
 </html>

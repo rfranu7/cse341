@@ -44,11 +44,16 @@ $shoes = array(
                         </div>
                         <div class="itemDetails">
                             <h3>'.$key.'</h3>
-                            <button class="btn">Buy Now</button>
-                            <form class="addToCartForm" action="?action=add-to-cart" method="post">
-                                <input type="hidden" name="itemName" value="'.$key.'">
-                                <button class="btn">Add to Cart</button>
-                            </form>
+                            <div class="forms">
+                                <form class="browse-forms" action="?action=buy-now" method="post">
+                                    <input type="hidden" name="itemName" value="'.$key.'">
+                                    <button class="btn btn-action">Buy Now</button>
+                                </form>
+                                <form class="browse-forms" action="?action=add-to-cart" method="post">
+                                    <input type="hidden" name="itemName" value="'.$key.'">
+                                    <button class="btn btn-primary">Add to Cart</button>
+                                </form>
+                            </div>
                         </div>
                       </div>';
             }

@@ -1,1 +1,1 @@
-<span>&#169; <?php echo date("Y"); ?> | Randeep Singh Ranu | Philippines | <a href="pages/attributions.php">Attributions</a></span>
+<span>&#169; <?php echo date("Y"); ?> | Randeep Singh Ranu | Philippines | <a href="https://www.nike.com/ph/launch" target="blank">Images are sourced from Nike.com</a></span>
