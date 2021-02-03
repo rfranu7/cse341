@@ -25,11 +25,14 @@ catch (PDOException $ex)
 
 $sql = "SELECT * FROM public.scriptures WHERE id = $_GET[id]";
 
-echo $sql;
+// echo $sql;
 
 $statement = $db->query($sql);
-$results = $statement->fetch(PDO::FETCH_ASSOC);
+$row = $statement->fetch(PDO::FETCH_ASSOC);
 
-print_r($results);
+echo '<div class="scripture-block" style="margin-bottom: 1rem;"><strong class="book">'.$row['book'].' </strong>';
+echo '<strong class="chapter">'.$row['chapter'].':</strong>';
+echo '<strong class="verse">'.$row['verse'].'</strong>';
+echo '<span class="content"> - "'.$row['content'].'"</span></div>';
 
 ?>

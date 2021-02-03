@@ -27,7 +27,7 @@ if(isset($_POST['book']) && $_POST['book'] != "") {
     $sql .= " WHERE book = '$_POST[book]'";
 }
 
-echo $sql;
+// echo $sql;
 
 
 $statement = $db->query($sql);
