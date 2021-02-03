@@ -28,7 +28,14 @@ $sql = "SELECT *
 $statement = $db->query($sql);
 $results = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-print_r($results);
+// print_r($results);
+foreach($results as $row){
+    echo '<div class="scripture-block"><span class="book">'.$row['book'].' </span>';
+    echo '<span class="chapter">'.$row['chapter'].':</span>';
+    echo '<span class="verse">'.$row['verse'].'</span>';   
+    echo '<span class="content"> - "'.$row['content'].'"</span></div>';    
+}
+
 
 
 
