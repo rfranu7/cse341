@@ -35,7 +35,7 @@ $results = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 // print_r($results);
 echo '<h1>Scripture Resources</h1>';
-echo '<form method="POST" action="./">';
+echo '<form method="POST" action="./scriptures.php">';
 echo '<input type="text" name="book" id="book">';
 echo '<input type="submit" value="SEARCH"></form>';
 foreach($results as $row){
