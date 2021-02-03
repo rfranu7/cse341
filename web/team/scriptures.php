@@ -24,7 +24,7 @@ catch (PDOException $ex)
 
 $sql = "SELECT * FROM public.scriptures";
 if(isset($_POST['book'])) {
-    $sql .= " WHERE book = $_POST[book]";
+    $sql .= " WHERE book = '$_POST[book]'";
 }
 
 echo $sql;
