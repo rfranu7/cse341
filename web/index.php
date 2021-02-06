@@ -22,6 +22,10 @@
             header('Location: /assignments/week3/');
         break;
 
+        case "habit-tracker":
+            header('Location: /project/project1/');
+        break;
+
         default:        
             include $_SERVER['DOCUMENT_ROOT'] . '/pages/home.php';
         break;
