@@ -38,7 +38,7 @@
 
                             <div class="complete">
                                 <form action="./?action=update-goal" method="POST">
-                                    <input type="hidden" name="'.$habit['habitid'].'">
+                                    <input type="hidden" name="id" value="'.$habit['habitid'].'">
                                     <button class="btn btn-start">Complete</button>
                                 </form>
                             </div>
