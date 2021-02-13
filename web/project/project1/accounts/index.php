@@ -90,11 +90,11 @@
             $regOutcome = regClient($userFirstname, $userLastname, $userEmail, $hashedPassword);
 
             // check results
-            if ($regOutcome === 1){
+            if ($regOutcome['count'] === 1){
                 $_SESSION['message'] = 'Registration successful. Please use your email and password to login.';
                 $_SESSION['status'] = "success";
 
-                addLog(1, $userFirstname.' '.$userLastname.' has registered on our system');
+                addLog($regOutcome['id'], $userFirstname.' '.$userLastname.' has registered on our system');
                 header('Location: ./?action=login');
                 exit;
             }
@@ -102,7 +102,7 @@
             else {
                 $_SESSION['message'] = 'Sorry, '.$userFirstname.', but your registration failed. Please try again.';
                 $_SESSION['status'] = "error";
-                addLog(1, $userFirstname.' '.$userLastname.' has failed to registered on our system');
+                
                 header("Location: ./?action=register");
                 exit;
             }
@@ -115,8 +115,105 @@
             header("Location: ./?action=login");
         break;
 
+        case "update-account":
+            $userFirstname = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_STRING);
+            $userLastname = filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_STRING);
+            $email = filter_input(INPUT_POST, 'emailAddress', FILTER_SANITIZE_EMAIL);
+            $userId = $_SESSION['userData']['userid'];
+
+            $userEmail = filter_var($email, FILTER_VALIDATE_EMAIL);
+
+            // check for missing data
+            if (empty($userFirstname) || empty($userLastname) || empty($userEmail)) {
+                $_SESSION['message'] = 'please provide information for all empty form fields';
+                $_SESSION['status'] = "error";
+
+                header("Location: ./");
+                exit;
+            } 
+
+            $regOutcome = updateClient($userId, $userFirstname, $userLastname, $userEmail);
+
+            // check results
+            if ($regOutcome === 1){
+                
+                $userData = getClient($userEmail);
+                array_pop($userData);
+                $_SESSION['userData'] = $userData;
+
+                $_SESSION['message'] = 'Profile successfully updated.';
+                $_SESSION['status'] = "success";
+
+                addLog($userId, $userFirstname.' '.$userLastname.' updated their records');
+                header('Location: ./');
+                exit;
+            }
+
+            else {
+                $_SESSION['message'] = 'An error has occured while updating your profile. Please try again.';
+                $_SESSION['status'] = "error";
+                
+                header("Location: ./");
+                exit;
+            }
+        break;
+
+        case "update-password":
+            $userPassword = filter_input(INPUT_POST, 'newPassword', FILTER_SANITIZE_STRING);
+            $oldPassword = filter_input(INPUT_POST, 'oldPassword', FILTER_SANITIZE_STRING);
+            $userId = $_SESSION['userData']['userid'];
+
+            // check for missing data
+            if (empty($userPassword) || empty($oldPassword)) {
+                $_SESSION['message'] = 'please provide information for all empty form fields';
+                $_SESSION['status'] = "error";
+
+                header("Location: ./");
+                exit;
+            }
+
+            
+            
+            $userData = getClient($_SESSION['userData']['emailaddress']);
+            $hashcheck = password_verify($oldPassword, $userData['userpassword']);
+
+            if(!$hashcheck) {
+                $_SESSION['message'] = 'you have entered incorrect details for your current password';
+                $_SESSION['status'] = "error";
+
+                header("Location: ./");
+                exit;
+            }
+
+            // Hash the password
+            $hashedPassword = password_hash($userPassword, PASSWORD_DEFAULT);
+            $regOutcome = updatePassword($userId, $hashedPassword);
+
+            // check results
+            if ($regOutcome === 1){
+                $_SESSION['message'] = 'Password updated successfully';
+                $_SESSION['status'] = "success";
+
+                addLog($userId, 'password update');
+                header('Location: ./');
+                exit;
+            }
+
+            else {
+                $_SESSION['message'] = 'Sorry, we have encountered a problem while trying to update you password. Please try again.';
+                $_SESSION['status'] = "error";
+                
+                header("Location: ./");
+                exit;
+            }
+        break;
+
         default:
-            include $_SERVER['DOCUMENT_ROOT'] . '/project/project1/login.php';
+            if(isset($_SESSION['loggedIn'])) {
+                include $_SERVER['DOCUMENT_ROOT'] . '/project/project1/account-settings.php';
+            } else {
+                include $_SERVER['DOCUMENT_ROOT'] . '/project/project1/login.php';
+            }
         break;
     }
 

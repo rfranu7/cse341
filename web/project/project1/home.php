@@ -11,17 +11,28 @@
 
     <header>
         <div class="imageContainer">
-            <img src="images/logo.png" alt="Harry R Singh" class="logo">
+            <a href="/project/project1/">
+                <img src="images/logo.png" alt="Harry R Singh" class="logo">
+            </a>
         </div>
         <div class="menu">
+            <a href="./accounts/" class="btn btn-transparent"><i class="fas fa-users-cog fa-lg"></i></a>
             <form>
                 <button class="btn btn-transparent" id="addHabitToggle"><i class="fas fa-plus-circle fa-lg"></i></button>
             </form>
-            <form action="/project/project1/accounts/?action=logout">
+            <a href="./accounts/?action=logout">
                 <button class="btn btn-transparent"><i class="fas fa-sign-out-alt fa-lg"></i></button>
-            </form>
+            </a>
         </div>
     </header>
+
+    <?php 
+            if(isset($_SESSION['message'])) {
+                echo '<p class="'.$_SESSION['status'].' text-center">'.$_SESSION['message'].'</p>';
+                unset($_SESSION['message']);
+                unset($_SESSION['status']);
+            }
+        ?>
 
     <main>
         <?php 

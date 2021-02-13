@@ -1,6 +1,26 @@
 <?php
     // MODEL FOR CONNECTION WITH USERS TABLE
     require_once $_SERVER['DOCUMENT_ROOT'] . '/project/project1/models/connect.php';
+
+    // ============================================================
+    // INSERT FUNCTIONS
+    // ============================================================
+
+    function addProgressSuccess($habitid, $progressday, $progressresult) {
+        $db = dbConnect();
+        $sql = 'INSERT INTO progress (habitid, progressday, progressresult) VALUES (:habitid, :progressday, :progressresult)';
+
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':habitid', $habitid, PDO::PARAM_INT);
+        $stmt->bindValue(':progressday', $progressday, PDO::PARAM_STR);
+        $stmt->bindValue(':progressresult', $progressresult, PDO::PARAM_BOOL);
+
+        $stmt->execute();
+        $rowCount = $stmt->rowCount();
+        $stmt->closeCursor();
+        
+        return $rowCount;
+    }
     
     // ============================================================
     // READ FUNCTIONS
@@ -33,6 +53,21 @@
         $stmt->closeCursor();
         
         return $data;
+    }
+
+    function isTodayComplete($habitid, $day) {
+        $db = dbConnect();
+        $sql = 'SELECT progressid, habitid, progressday, progressresult FROM progress WHERE habitid = :habitid AND progressday = :progressday';
+
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':habitid', $habitid, PDO::PARAM_INT);
+        $stmt->bindValue(':progressday', $day, PDO::PARAM_STR);
+
+        $stmt->execute();
+        $rowCount = $stmt->rowCount();
+        $stmt->closeCursor();
+        
+        return $rowCount;
     }
     
 

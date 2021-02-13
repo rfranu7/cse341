@@ -18,10 +18,47 @@
         $stmt->bindValue(':lastName', $lastName, PDO::PARAM_STR);
 
         $stmt->execute();
-        $rowsChanged = $stmt->rowCount();
+        $id = $db->lastInsertId();
+        $rowCount = $stmt->rowCount();
         $stmt->closeCursor();
 
-        return $rowsChanged;
+        return array("id" => $id, "count" => $rowCount);
+    }
+
+    // ============================================================
+    // UPDATE FUNCTIONS
+    // ============================================================
+
+    function updateClient($userid, $firstName, $lastName, $emailAddress) {
+        $db = dbConnect();
+        $sql = 'UPDATE users SET firstname = :firstname, lastname = :lastname, emailaddress = :emailaddress WHERE userid = :userid';
+
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':userid', $userid, PDO::PARAM_INT);
+        $stmt->bindValue(':firstname', $firstName, PDO::PARAM_STR);
+        $stmt->bindValue(':lastname', $lastName, PDO::PARAM_STR);
+        $stmt->bindValue(':emailaddress', $emailAddress, PDO::PARAM_STR);
+        
+        $stmt->execute();
+        $rowCount = $stmt->rowCount();
+        $stmt->closeCursor();
+        
+        return $rowCount;
+    }
+
+    function updatePassword($userid, $userPassword) {
+        $db = dbConnect();
+        $sql = 'UPDATE users SET userpassword = :userpassword WHERE userid = :userid';
+
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':userid', $userid, PDO::PARAM_INT);
+        $stmt->bindValue(':userpassword', $userPassword, PDO::PARAM_STR);
+        
+        $stmt->execute();
+        $rowCount = $stmt->rowCount();
+        $stmt->closeCursor();
+        
+        return $rowCount;
     }
     
     // ============================================================

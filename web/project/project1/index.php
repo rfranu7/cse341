@@ -41,20 +41,64 @@
             $outcome = addHabit($_SESSION['userData']['userid'], $frequencyId, $habitName);
 
             // check results
-            if ($regOutcome === 1){
-                $_SESSION['message'] = 'Registration successful. Please use your email and password to login.';
+            if ($outcome === 1){
+                $_SESSION['message'] = 'Habit successfully added';
                 $_SESSION['status'] = "success";
 
                 addLog($_SESSION['userData']['userid'], $_SESSION['userData']['firstname'].' '.$_SESSION['userData']['lastname'].' added a new habit.');
-                header('Location: ./?action=login');
+                header('Location: ./?action=home');
+                exit;
+            }
+
+            else {
+                $_SESSION['message'] = 'We have encountered an error while trying to add your new habit';
+                $_SESSION['status'] = "error";
+                addLog($_SESSION['userData']['userid'], $_SESSION['userData']['firstname'].' '.$_SESSION['userData']['lastname'].' failed to add a new habit.');
+                header("Location: ./?action=home");
+                exit;
+            }
+        break;
+
+        case "update-goal":
+            $habitId = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+            $progressDay = date('Y/m/d H:i:s');
+            $progressResult = 'true';
+            $userId = $_SESSION['userData']['userid'];
+
+            if (empty($habitId)){
+                $_SESSION['message'] = 'Please provide information for all empty form fields.';
+                $_SESSION['status'] = "error";
+                header("Location: ./");
+                exit;
+            }
+            
+            $isTodayComplete = isTodayComplete($habitId, $progressDay);
+
+            if($isTodayComplete >= 1) {
+                $_SESSION['message'] = 'Your progress for today has already been recorded';
+                $_SESSION['status'] = "info";
+
+                header('Location: ./');
+                exit;
+            }
+
+            $outcome = addProgressSuccess($habitId, $progressDay, $progressResult);
+
+            // check results
+            if ($outcome === 1){
+                $_SESSION['message'] = 'Result successfuly saved';
+                $_SESSION['status'] = "success";
+
+                addLog($userId, $_SESSION['userData']['firstname'].' '.$_SESSION['userData']['lastname'].' has updated progress.');
+                header('Location: ./');
                 exit;
             }
 
             else {
                 $_SESSION['message'] = 'Sorry, '.$userFirstname.', but your registration failed. Please try again.';
                 $_SESSION['status'] = "error";
-                addLog($_SESSION['userData']['userid'], $_SESSION['userData']['firstname'].' '.$_SESSION['userData']['lastname'].' failed to add a new habit.');
-                header("Location: ./?action=register");
+                addLog($userId, $_SESSION['userData']['firstname'].' '.$_SESSION['userData']['lastname'].' failed to updated progress.');
+                header("Location: ./");
                 exit;
             }
         break;

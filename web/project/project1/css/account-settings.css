@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #2a2a2a;
+    background-color: #fefefe;
     font-family: 'Montserrat', sans-serif;
     margin: 0;
 }
@@ -52,11 +52,11 @@ img {
 
 main {
     padding: 1rem 2rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     justify-content: center;
     align-items: center;
     grid-gap: 2rem;
+    max-width: 1080px;
+    margin: 0 auto;
 }
 
 .box {
@@ -164,6 +164,15 @@ input, select {
 .btn-start {
     background-color: #459aee;
     color: white;
+}
+
+.button-placeholder {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.text-center {
+    text-align: center;
 }
 
 /* MODAL  */
