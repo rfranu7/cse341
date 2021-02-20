@@ -12,7 +12,27 @@
 
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':userid', $userid, PDO::PARAM_INT);
-        $stmt->bindValue(':frequencyid', $frequencyid, PDO::PARAM_STR);
+        $stmt->bindValue(':frequencyid', $frequencyid, PDO::PARAM_INT);
+        $stmt->bindValue(':habitname', $habitname, PDO::PARAM_STR);
+
+        $stmt->execute();
+        $rowsChanged = $stmt->rowCount();
+        $stmt->closeCursor();
+
+        return $rowsChanged;
+    }
+
+    // ============================================================
+    // UPDATE FUNCTIONS
+    // ============================================================
+
+    function updateHabit($habitid, $frequencyid, $habitname){
+        $db = dbConnect();
+        $sql = 'UPDATE habit SET frequencyid = :frequencyid, habitname = :habitname WHERE habitid = :habitid';
+
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':habitid', $habitid, PDO::PARAM_INT);
+        $stmt->bindValue(':frequencyid', $frequencyid, PDO::PARAM_INT);
         $stmt->bindValue(':habitname', $habitname, PDO::PARAM_STR);
 
         $stmt->execute();

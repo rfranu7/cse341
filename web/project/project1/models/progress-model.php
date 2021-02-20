@@ -55,6 +55,23 @@
         return $data;
     }
 
+    function getProgressByDate($habitid, $startDate, $endDate) {
+        $db = dbConnect();
+        $sql = 'SELECT progressid, habitid, progressday, progressresult FROM progress WHERE habitid = :habitid 
+        AND progressday BETWEEN :startDate AND :endDate';
+
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':habitid', $habitid, PDO::PARAM_INT);
+        $stmt->bindValue(':startDate', $startDate, PDO::PARAM_STR);
+        $stmt->bindValue(':endDate', $endDate, PDO::PARAM_STR);
+
+        $stmt->execute();
+        $count = $stmt->rowCount();
+        $stmt->closeCursor();
+        
+        return $count;
+    }
+
     function isTodayComplete($habitid, $day) {
         $db = dbConnect();
         $sql = 'SELECT progressid, habitid, progressday, progressresult FROM progress WHERE habitid = :habitid AND progressday = :progressday';

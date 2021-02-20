@@ -19,17 +19,11 @@
     }
 
     switch ($action){
-        case "logs":
-            if($_SESSION['userData']['userRole'] == 23) {
-                include $_SERVER['DOCUMENT_ROOT'] . '/project/project1/logs.php';
-            } else {
-                include $_SERVER['DOCUMENT_ROOT'] . '/project/project1/home.php';
-            }
-        break;
 
         case "add-habit":
             $habitName = filter_input(INPUT_POST, 'habitName', FILTER_SANITIZE_STRING);
             $frequencyId = filter_input(INPUT_POST, 'frequencyId', FILTER_SANITIZE_NUMBER_INT);
+            $habitid = filter_input(INPUT_POST, 'habitid', FILTER_SANITIZE_NUMBER_INT);
 
             if (empty($habitName) || empty($frequencyId)){
                 $_SESSION['message'] = 'Please provide information for all empty form fields.';
@@ -38,22 +32,37 @@
                 exit;
             }
 
-            $outcome = addHabit($_SESSION['userData']['userid'], $frequencyId, $habitName);
+            if(empty($habitid)) {
+                $outcome = addHabit($_SESSION['userData']['userid'], $frequencyId, $habitName);
+            } else {
+                $outcome = updateHabit($habitid, $frequencyId, $habitName);
+            }
 
             // check results
             if ($outcome === 1){
-                $_SESSION['message'] = 'Habit successfully added';
+                if(empty($habitid)) {
+                    $_SESSION['message'] = 'Habit successfully added';
+                    addLog($_SESSION['userData']['userid'], $_SESSION['userData']['firstname'].' '.$_SESSION['userData']['lastname'].' added a new habit.');
+                } else {
+                    $_SESSION['message'] = 'Habit successfully updated';
+                    addLog($_SESSION['userData']['userid'], $_SESSION['userData']['firstname'].' '.$_SESSION['userData']['lastname'].' updated a habit.');
+                }
                 $_SESSION['status'] = "success";
 
-                addLog($_SESSION['userData']['userid'], $_SESSION['userData']['firstname'].' '.$_SESSION['userData']['lastname'].' added a new habit.');
                 header('Location: ./?action=home');
                 exit;
             }
 
             else {
-                $_SESSION['message'] = 'We have encountered an error while trying to add your new habit';
+                if(empty($habitid)) {
+                    $_SESSION['message'] = 'We have encountered an error while trying to add your new habit';
+                    addLog($_SESSION['userData']['userid'], $_SESSION['userData']['firstname'].' '.$_SESSION['userData']['lastname'].' failed to add a new habit.');
+                } else {
+                    $_SESSION['message'] = 'We have encountered an error while trying to update your new habit';
+                    addLog($_SESSION['userData']['userid'], $_SESSION['userData']['firstname'].' '.$_SESSION['userData']['lastname'].' failed to update a new habit.');
+                }
                 $_SESSION['status'] = "error";
-                addLog($_SESSION['userData']['userid'], $_SESSION['userData']['firstname'].' '.$_SESSION['userData']['lastname'].' failed to add a new habit.');
+                
                 header("Location: ./?action=home");
                 exit;
             }
@@ -103,7 +112,7 @@
             }
         break;
 
-        default:     
+        default:
             $frequencies = getAllFrequency();
             $habits = getHabitsByUser($_SESSION['userData']['userid']);
             include $_SERVER['DOCUMENT_ROOT'] . '/project/project1/home.php';

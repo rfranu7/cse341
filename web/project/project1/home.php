@@ -37,9 +37,14 @@
     <main>
         <?php 
             foreach ($habits as $habit) {
+                $lastDaily = array(date('Y-m-d', strtotime('-6 days')),date('Y-m-d', strtotime('-5 days')),date('Y-m-d', strtotime('-4 days')),date('Y-m-d', strtotime('-3 days')),date('Y-m-d', strtotime('-2 days')),date('Y-m-d', strtotime('-1 days')));
+                $lastWeekly = array(date('Y-m-d', strtotime('-6 weeks')),date('Y-m-d', strtotime('-5 weeks')),date('Y-m-d', strtotime('-4 weeks')),date('Y-m-d', strtotime('-3 weeks')),date('Y-m-d', strtotime('-2 weeks')),date('Y-m-d', strtotime('-1 weeks')));
+                $lastMonthly = array(date('Y-m-d', strtotime('-6 months')),date('Y-m-d', strtotime('-5 months')),date('Y-m-d', strtotime('-4 months')),date('Y-m-d', strtotime('-3 months')),date('Y-m-d', strtotime('-2 months')),date('Y-m-d', strtotime('-1 months')));
+
                 echo '<div class="box">
                         <div class="box-header">
                             <p>'.$habit['habitname'].'</p>
+                            <p class="editHabitToggle" data-name="'.$habit['habitname'].'" data-frequency="'.$habit['frequencyid'].'" data-id="'.$habit['habitid'].'"><i class="fas fa-ellipsis-h"></i></p>
                         </div>
                         <div class="box-body">
                             <div class="goal">
@@ -57,23 +62,57 @@
                         <div class="box-footer">';
                             $day = date('Y-m-d');
                             $progress = getProgressByHabit($habit['habitid']);
-                            $progressToday = getProgressByToday($habit['habitid'], $day);
                             if(count($progress)>1) {
                                 $progress = array_reverse($progress);
                             }
                             
                             for ($i=0; $i < 6 ; $i++) { 
-                                if(isset($progress[$i]['progressresult']) && $progress[$i]['progressresult']) {
-                                    echo '<i class="far fa-smile"></i>';
+
+                                if($habit['frequencyname'] == 'Daily') {
+                                    $progress = getProgressByToday($habit['habitid'], $lastDaily[$i]);
+                                    $date = date('M d, Y', strtotime($lastDaily[$i]));
+
+                                } else if($habit['frequencyname'] == 'Weekly') {
+                                    $start =  date('Y-m-d', strtotime('last Sunday', strtotime($lastWeekly[$i])));
+                                    $end = date('Y-m-d', strtotime('this Saturday', strtotime($lastWeekly[$i])));
+                                    $date = date('M d, Y', strtotime($lastWeekly[$i]));
+
+                                    $progress = getProgressByDate($habit['habitid'], $start, $end);
+                                } else if($habit['frequencyname'] == 'Monthly') {
+                                    $start =  date('Y-m-01', strtotime($lastMonthly[$i]));
+                                    $end = date('Y-m-d', strtotime('last day of this month', strtotime($lastMonthly[$i])));
+                                    $date = date('M d, Y', strtotime($lastMonthly[$i]));
+                                    
+                                    $progress = getProgressByDate($habit['habitid'], $start, $end);
+                                }
+
+                                if($progress >= 1) {
+                                    echo '<i class="far fa-smile" title="'.$date.'"></i>';
                                 } else {
-                                    echo '<i class="far fa-sad-cry"></i>';
+                                    echo '<i class="far fa-sad-cry" title="'.$date.'"></i>';
                                 }
                             }
 
-                            if(isset($progressToday['progressresult']) && $progressToday['progressresult']) {
-                                echo '<i class="far fa-smile"></i>';
+                            if($habit['frequencyname'] == 'Daily') {
+                                $thisProgress = getProgressByToday($habit['habitid'], $day);
+
+                            } else if($habit['frequencyname'] == 'Weekly') {
+                                $start =  date('Y-m-d', strtotime('last Sunday', strtotime($day)));
+                                $end = date('Y-m-d', strtotime('this Saturday', strtotime($day)));
+
+                                $thisProgress = getProgressByDate($habit['habitid'], $start, $end);
+                            } else if($habit['frequencyname'] == 'Monthly') {
+                                $start =  date('Y-m-01', strtotime($day));
+                                $end = date('Y-m-d', strtotime('last day of this month', strtotime($day)));
+                                
+                                $thisProgress = getProgressByDate($habit['habitid'], $start, $end);
+                            }
+                            $date = date('M d, Y', strtotime($day));
+
+                            if($thisProgress >= 1) {
+                                echo '<i class="far fa-smile" title="'.$date.'"></i>';
                             } else {
-                                echo '<i class="fas fa-spinner"></i>';
+                                echo '<i class="fas fa-spinner" title="'.$date.'"></i>';
                             }
                         echo '</div>
                     </div>';
@@ -87,7 +126,7 @@
     <div id="addHabitModal" class="modal">
         <div class="modal-content">
             <h2>Add Habit</h2>
-            <form action="?action=add-habit" method="POST">
+            <form action="?action=add-habit" method="POST" id="habitForm">
                 <label for="habitName">Habit</label>
                 <input id="habitName" name="habitName" type="text">
 
@@ -110,14 +149,46 @@
     <script>
         const modal = document.getElementById("addHabitModal");
         const addBtn = document.getElementById("addHabitToggle");
+        const editBtn = document.querySelectorAll(".editHabitToggle");
+
+        const habitForm = document.getElementById("habitForm");
+        const habitName = document.getElementById("habitName");
+        const frequencyId = document.getElementById("frequencyId");
 
         addBtn.addEventListener("click", (e) => {
             e.preventDefault();
             modal.style.display = "block";
         });
 
+        editBtn.forEach(element => {
+            element.addEventListener("click", (e) => {
+                e.preventDefault();
+
+                const hidden = document.createElement('input');
+                hidden.setAttribute("type", "hidden");
+                hidden.setAttribute("name", "habitid");
+
+                console.log(frequencyId.options);
+                for(var i=0; i<frequencyId.length; i++) {
+                    if(frequencyId.options[i].value == '') {
+                        frequencyId.options[i].removeAttribute("selected");
+                    } else if(frequencyId.options[i].value == e.target.parentElement.dataset.frequency) {
+                        frequencyId.options[i].setAttribute("selected", "true");
+                    }
+                };
+
+                habitName.value = e.target.parentElement.dataset.name;
+                hidden.value = e.target.parentElement.dataset.id;
+                habitForm.appendChild(hidden);
+
+                modal.style.display = "block";
+            });
+        });
+
         window.addEventListener("click", (e) => {
             if (e.target == modal) {
+                habitForm.reset();
+                frequencyId.options[0].setAttribute("selected", "true");
                 modal.style.display = "none";
             }
         });
