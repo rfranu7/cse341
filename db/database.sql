@@ -12,8 +12,6 @@ CREATE TABLE users (
     tokenExpire TIMESTAMP NULL DEFAULT NULL
 );
 
-INSERT INTO users (firstName, lastName, emailAddress, userPassword) VALUES ('Randeep', 'Ranu', 'rfranu7@gmail.com', 'password');
-
 -- FREQUENCY TABLE QUERY
 CREATE TABLE frequency (
 	frequencyId INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -21,6 +19,8 @@ CREATE TABLE frequency (
 );
 
 INSERT INTO frequency (frequencyName) VALUES ('Daily');
+INSERT INTO frequency (frequencyName) VALUES ('Weekly');
+INSERT INTO frequency (frequencyName) VALUES ('Month');
 
 -- HABIT TABLE QUERY
 CREATE TABLE habit (
@@ -30,8 +30,6 @@ CREATE TABLE habit (
 	habitName TEXT NOT NULL
 );
 
-INSERT INTO habit (userId, frequencyId, habitName) VALUES (1, 1, 'Read the scriptures');
-
 -- PROGRESS TABLE QUERY
 CREATE TABLE progress (
 	progressId INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -40,8 +38,6 @@ CREATE TABLE progress (
     result BOOLEAN
 );
 
-INSERT INTO progress (habitId, day, result) VALUES (1, '2021-01-30', TRUE);
-
 -- LOG TABLE QUERY
 CREATE TABLE logs (
 	logId INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -49,5 +45,3 @@ CREATE TABLE logs (
 	userAction TEXT NOT NULL,
     dateAdded TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-INSERT INTO logs (userId, userAction) VALUES (1, 'User logged in');
